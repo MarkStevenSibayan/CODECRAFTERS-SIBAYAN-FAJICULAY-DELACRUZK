@@ -1,0 +1,20 @@
+<ion-content [fullscreen]="true">
+  <img class="background">
+  
+    <h1 class="loginText"><b>LOGIN</b></h1>
+    
+    <pre class="login-container">
+      
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+  
+    <ion-button (click)="Login()" color="success" class="login">Login</ion-button>
+    <ion-button (click)="signupPage()" class="signup">SignUp</ion-button>
+    </pre>
+  </ion-content>
