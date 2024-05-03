@@ -25,3 +25,36 @@
 #container a {
   text-decoration: none;
 }
+
+.page{
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex-direction: column;
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 8px ;
+  height: auto;
+  border: 2px solid green;
+}
+
+.card{
+  border: 2px solid blue;
+  width: 250px;
+  margin: 10px;
+}
+
+ion-footer{
+  width: 100%;
+  height: 50px;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.footer-button{
+  width: 50px;
+  margin: 5px;
+}

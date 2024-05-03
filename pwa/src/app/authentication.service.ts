@@ -4,11 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  authenticated = false;
+  authenticated = true;
   constructor() { }
 
-  canProceed(){
-    return this.authenticated = true;
+  canActivate(){
+    return this.authenticated;
   }
 
   setAuthentication(auth:boolean){

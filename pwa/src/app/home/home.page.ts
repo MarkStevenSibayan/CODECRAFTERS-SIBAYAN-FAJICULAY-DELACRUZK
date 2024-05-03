@@ -14,6 +14,10 @@ export class HomePage {
     private route: Router
   ) {}
 
+  ngOnInit() {
+    this.authenticationService.authenticated = false;
+  }
+  
   logout(){
     this.authenticationService.authenticated = false;
     this.route.navigate(['login']);

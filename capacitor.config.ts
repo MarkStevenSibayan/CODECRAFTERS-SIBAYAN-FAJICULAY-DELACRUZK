@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'hagos-assignment-2',
+  appName: '',
   webDir: 'www',
   server: {
     androidScheme: 'https'
