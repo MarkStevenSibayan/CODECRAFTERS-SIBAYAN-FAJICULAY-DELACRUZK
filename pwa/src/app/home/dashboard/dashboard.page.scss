@@ -1,0 +1,117 @@
+.page{
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 300px;
+    margin-left: auto ;
+    top: -15px;
+    width: auto;
+    height: auto;
+    z-index: 999;
+    background-color: antiquewhite;
+  }
+
+  .all{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 999;
+    color: black;
+    background-color: antiquewhite;
+  }
+  
+  .card{
+    border: 2px solid blue;
+    width: 135px;
+    height: 250px;
+    margin: 10px;
+    border-radius: 20px;
+  }
+
+  .image1{
+    background-image: url(../dashboard/Resources/1.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .image2{
+    background-image: url(../dashboard/Resources/2.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .image3{
+    background-image: url(../dashboard/Resources/3.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .image4{
+    background-image: url(../dashboard/Resources/4.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .image5{
+    background-image: url(../dashboard/Resources/5.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .image6{
+    background-image: url(../dashboard/Resources/6.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .image7{
+    background-image: url(../dashboard/Resources/7.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .image8{
+    background-image: url(../dashboard/Resources/8.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+
+  .background{
+    position: absolute;
+    top: auto;
+    right: auto;
+    width: 120%;
+    height: auto;
+    background-color: antiquewhite;
+    background-size: cover;
+    z-index: 999;
+}
+
+ion-tab-button{
+  background-color: white;
+  color: black;
+}
+
+ion-content{
+  overflow-y: auto;
+}

@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 import { HomePage } from './home/home.page';
 
 @NgModule({
-  declarations: [AppComponent, HomePage],
+  declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ServiceWorkerModule.register('ngsw-worker.js', {
   enabled: !isDevMode(),
   // Register the ServiceWorker as soon as the application is stable

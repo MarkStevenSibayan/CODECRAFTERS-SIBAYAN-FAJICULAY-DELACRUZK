@@ -24,12 +24,15 @@ export class SignupPage implements OnInit {
 
   async signUp(){
     if (!this.email || !this.password || !this.retypePassword){
-        this.presentAlert('Error', 'Please Fill in All Fields');
+        this.presentAlert('Failed', 'Please Fill Up All Fields');
         return;
     }
-
+    if(this.password.length < 5){
+      this.presentAlert('Failed', 'Password should be atleast 6 characters');
+        return;
+    }
     if (this.password !== this.retypePassword){
-      this.presentAlert('Error', 'Password Do Not Match');
+      this.presentAlert('Failed', 'Password Do Not Match');
       return;
     }
     const auth = getAuth();

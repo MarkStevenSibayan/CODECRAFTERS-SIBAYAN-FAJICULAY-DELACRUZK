@@ -6,7 +6,7 @@ import { AuthenticationService } from './authentication.service';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomePage,
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthenticationService]
   },
   {
@@ -22,6 +22,7 @@ const routes: Routes = [
     path: 'signup',
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
   },
+
 ];
 
 @NgModule({

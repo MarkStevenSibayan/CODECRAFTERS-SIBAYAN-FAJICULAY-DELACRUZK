@@ -1,31 +1,29 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="dashboard">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
 
-  <ion-button (click)="logout()" color="danger" class="logout">Logout</ion-button>
-  <div class="page">
-    <div class="card">
-      <p>Computer Parts</p>
-    </div>
-    <div class="card">
-      <p>Coding</p>
-    </div>
-    <div class="card">
-      <p>IT News</p>
-    </div>
-  </div>
-</ion-content>
+    <ion-tab-button tab="search">
+      <ion-icon name="Search"></ion-icon>
+      <ion-label>Search</ion-label>
+    </ion-tab-button>
 
-<ion-footer>
-  <ion-button class="footer-button" icon="Home"><ion-icon name="Home"></ion-icon></ion-button>
-  <ion-button class="footer-button" icon="Home"><ion-icon name="Search"></ion-icon></ion-button>
-  <ion-button class="footer-button" icon="Home"><ion-icon name="Add"></ion-icon></ion-button>
-  <ion-button class="footer-button" icon="Home"><ion-icon name="notifications"></ion-icon></ion-button>
-  <ion-button class="footer-button" icon="Home"><ion-icon name="person"></ion-icon></ion-button>
-</ion-footer>
+    <ion-tab-button tab="search">
+      <ion-icon name="add"></ion-icon>
+      <ion-label>Share</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="notification">
+      <ion-icon name="notifications"></ion-icon>
+      <ion-label>Notification</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

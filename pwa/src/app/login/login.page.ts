@@ -16,7 +16,8 @@ export class LoginPage implements OnInit {
   constructor(
   private authenticationService: AuthenticationService,
   private alertController: AlertController,
-  private route: Router) { }
+  private route: Router
+) { }
 
   ngOnInit() {
   }
@@ -29,7 +30,7 @@ export class LoginPage implements OnInit {
       this.authenticationService.setAuthentication(true);
       this.presentAlert('Success', 'Welcome To Our Project Application User');
       this.authenticationService.authenticated = true;
-      this.route.navigate(['home']);
+      this.route.navigate(['home/dashboard']);
     })
     .catch((error) => {
       const errorCode = error.code;
