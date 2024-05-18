@@ -1,13 +1,12 @@
 
 <ion-content [fullscreen]="true">
-
   <section class="fab">
     <ion-fab vertical="" horizontal="end" slot="fixed">
       <ion-fab-button>
           <ion-icon name="add"></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="top">
-          <ion-fab-button>
+          <ion-fab-button href="https://www.facebook.com/ValenzuelaITSociety">
               <ion-icon name="logo-facebook"></ion-icon>
           </ion-fab-button>
           <ion-fab-button>
@@ -22,37 +21,25 @@
 
   <div class="all">
     <div class="profile-image"></div>
-    <div style="z-index: 999;">
-      <p><b>TestNameGmail</b></p>
+    <div class="profName">
+      <p><b>{{userPangalan}}</b></p>
     </div>
     <div style="z-index: 999;">
-      <p><b>Followers: 1k   |   Following: 510</b></p>
+      
+      <p><b>Followers: 1k  |   Following: 510</b></p>
     </div> 
     <ion-button class="edit" color="warning">EDIT</ion-button>
   </div>
 
   <div class="background">
     <div class="background1"></div>
-    <div class="page">
-      <div class="card">
-        <div class="image1"></div>
-      </div>
-      <div class="card">
-        <div class="image2"></div>
-      </div>
-      <div class="card">
-        <div class="image3"></div>
-      </div>
-      <div class="card">
-        <div class="image4"></div>
-      </div>
-      <div class="card">
-        <div class="image5"></div>
-      </div>
-      <div class="card">
-        <div class="image6"></div>
+    <div class="list">
+      <div *ngFor="let prof of userProfile" class="item">
+        <p class="desc">{{prof.desc}}</p>
+        <img src="{{prof.link}}" alt="Displayed Image" (click)="openModal(prof.id, prof.link, prof.desc, prof.message, prof.react, prof)">
       </div>
     </div>
   </div>
-
+  
+  <ion-button color="danger" class="logout" (click)="logout()">Logout</ion-button>
 </ion-content>

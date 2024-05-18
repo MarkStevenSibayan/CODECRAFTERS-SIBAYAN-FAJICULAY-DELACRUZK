@@ -1,32 +1,12 @@
 <ion-content [fullscreen]="true">
   <div class="all"><p><u>ALL</u></p></div>
 
-    <div class="page">
-      <div class="card">
-        <div class="image1"></div>
-      </div>
-      <div class="card">
-        <div class="image2"></div>
-      </div>
-      <div class="card">
-        <div class="image3"></div>
-      </div>
-      <div class="card">
-        <div class="image4"></div>
-      </div>
-      <div class="card">
-        <div class="image5"></div>
-      </div>
-      <div class="card">
-        <div class="image6"></div>
-      </div>
-      <div class="card">
-        <div class="image7"></div>
-      </div>
-      <div class="card">
-        <div class="image8"></div>
-      </div>
+  <div class="list">
+    <div *ngFor="let user of userList" class="item">
+      <p class="desc">{{user.desc}}</p>
+      <img src="{{user.link}}" alt="Displayed Image" (click)="openModal(user.id, user.link, user.desc, user.message, user.react, user)">
     </div>
+  </div>
 
   </ion-content>
 

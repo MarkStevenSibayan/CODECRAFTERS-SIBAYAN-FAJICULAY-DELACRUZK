@@ -10,7 +10,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  userName: string = '';
   email: string = '';
   password: string = '';
   constructor(
@@ -20,6 +20,7 @@ export class LoginPage implements OnInit {
 ) { }
 
   ngOnInit() {
+    localStorage.setItem('userName', '')
   }
 
   Login(){
@@ -30,15 +31,18 @@ export class LoginPage implements OnInit {
       this.authenticationService.setAuthentication(true);
       this.presentAlert('Success', 'Welcome To Our Project Application User');
       this.authenticationService.authenticated = true;
+      this.userName = this.email;
+      localStorage.setItem('userName', this.email)
       this.route.navigate(['home/dashboard']);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message
       this.presentAlert('Failed', 'Invalid Input')
+      this.email = '';
+      this.password = '';
     })
-    this.email = '';
-    this.password = '';
+    
   }
 
   async presentAlert(header: string, message: string){
