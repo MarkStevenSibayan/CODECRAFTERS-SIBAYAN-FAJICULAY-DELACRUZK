@@ -30,12 +30,17 @@ export class ProfilePage implements OnInit {
     private modalController: ModalController
   ) 
   { 
-    this.users();
-    this.profiles(); 
+    
 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  ionViewWillEnter(){
+    this.users();
+    this.profiles(); 
+  }
 
   async users(){
     this.isLoading = true;
@@ -54,12 +59,12 @@ export class ProfilePage implements OnInit {
     this.authenticationService.authenticated = false;
   }
 
-  async openModal(userid: string, userlink: string, userdesc: string, userMessage: string, userReact: number, user: User) {
-    localStorage.setItem('userID', userid)
-    localStorage.setItem('userLink', userlink)
-    localStorage.setItem('userDesc', userdesc)
-    localStorage.setItem('userMessage', userMessage)
-    localStorage.setItem("userReact", userReact.toString())
+  async openModal(user: User) {
+    this.homeService.userId = user.id
+    this.homeService.userDesc = user.desc
+    this.homeService.userLink = user.link
+    this.homeService.userMessage = user.message
+    this.homeService.userReact = user.react
 
     const modal = await this.modalController.create({
       component: ContentComponent,

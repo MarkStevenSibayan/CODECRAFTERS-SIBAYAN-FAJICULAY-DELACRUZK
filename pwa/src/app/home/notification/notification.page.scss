@@ -14,7 +14,6 @@ ion-content{
     width: 100%;
     min-height: 100%;
     background-color: black;
-
 }
 
 .notif{
@@ -28,6 +27,7 @@ ion-content{
     flex-direction: column;
     justify-content: flex-start;
     overflow-y: auto;
+    padding-bottom: 60px;
 
 }
 

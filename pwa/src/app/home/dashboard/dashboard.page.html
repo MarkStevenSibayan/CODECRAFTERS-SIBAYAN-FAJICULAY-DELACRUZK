@@ -4,7 +4,7 @@
   <div class="list">
     <div *ngFor="let user of userList" class="item">
       <p class="desc">{{user.desc}}</p>
-      <img src="{{user.link}}" alt="Displayed Image" (click)="openModal(user.id, user.link, user.desc, user.message, user.react, user)">
+      <img src="{{user.link}}" alt="Displayed Image" (click)="openModal(user)">
     </div>
   </div>
 

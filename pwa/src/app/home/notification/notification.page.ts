@@ -16,36 +16,29 @@ export class NotificationPage implements OnInit {
   notif: Notification = new Notification();
   notificationList: iNotification[] = [];
   isLoading = false;
-  
+
+
   constructor(
     private homeService: HomeService,
     private alertController: AlertController
-  ) { this.users(); }
+  ) { 
+
+  }
 
   ngOnInit() {}
 
-  async users(){
+  ionViewWillEnter(){
+    this.notific();
+  }
+
+
+  async notific(){
     this.isLoading = true;
     this.notificationList = await this.homeService.getNotification();
     this.isLoading = false;
   }
 
-  async AddNotif(){
-    const app = initializeApp(environment.firebaseConfig);
-    const firestore = getFirestore(app);
-
-    try{
-        const doc = await addDoc(collection(firestore, "profile"), {
-          message: localStorage.getItem('notificationMessage')
-        });
-
-        console.log("Document written with ID: ", doc.id)
-        this.presentAlert('Success', "Successfully Saved")
-        
-    } catch (e) {
-        console.error("Error adding Document: ", e)
-    }
-  }
+  
 
   async presentAlert(header: string, message: string){
     const alert = await this.alertController.create({

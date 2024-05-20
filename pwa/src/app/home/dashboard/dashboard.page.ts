@@ -25,9 +25,14 @@ export class DashboardPage implements OnInit {
   constructor(
     private homeService: HomeService,
     private modalController: ModalController
-  ) { this.users(); }
+  ) { }
 
   ngOnInit() {}
+
+  ionViewWillEnter(){
+    this.users(); 
+  }
+
 
   async users(){
     this.isLoading = true;
@@ -35,45 +40,20 @@ export class DashboardPage implements OnInit {
     this.isLoading = false;
   }
 
-  async openModal(userid: string, userlink: string, userdesc: string, userMessage: string, userReact: number, user: User) {
-    localStorage.setItem('userID', userid)
-    localStorage.setItem('userLink', userlink)
-    localStorage.setItem('userDesc', userdesc)
-    localStorage.setItem('userMessage', userMessage)
-    localStorage.setItem("userReact", userReact.toString())
+  async openModal(user: User) {
+    this.ionViewWillEnter();
+    this.homeService.userId = user.id
+    this.homeService.userDesc = user.desc
+    this.homeService.userLink = user.link
+    this.homeService.userMessage = user.message
+    this.homeService.userReact = user.react
+
 
     const modal = await this.modalController.create({
       component: ContentComponent,
     });
     modal.present();
-    
   }
 
-  async Add(user: User){
-    const app = initializeApp(environment.firebaseConfig);
-    const firestore = getFirestore(app);
-
-    try{
-        const doc = await addDoc(collection(firestore, "profile"), {
-          desc: user.desc,
-          link: user.link,
-          message: user.message,
-          react: user.react
-
-            // firstName: user.firstName,
-            // middleName: user.middleName,
-            // lastName: user.lastName,
-        });
-        //method 2
-        // const docRefM2 = await addDoc(collection(firestore, "users"),
-        // user
-        //  );
-
-        console.log("Document written with ID: ", doc.id)
-        
-    } catch (e) {
-        console.error("Error adding Document: ", e)
-    }
-  }
 
 }

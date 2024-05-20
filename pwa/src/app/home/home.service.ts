@@ -14,6 +14,14 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomeService {
 
+
+  ProfileContent: any[] = [];
+  userId: string = '';
+  userLink: string = '';
+  userDesc: string = '';
+  userMessage: string  = '';
+  userReact: number = 0;
+
   constructor(private alertController: AlertController) {}
 
   async getUser(): Promise<iUser[]> {

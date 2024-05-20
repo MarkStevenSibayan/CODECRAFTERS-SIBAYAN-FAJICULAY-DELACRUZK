@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ProfilePage } from './profile/profile.page';
 import { ModalComponent } from './modal/modal.component';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,9 @@ import { ModalComponent } from './modal/modal.component';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  
+
   constructor(
+    private homeService: HomeService,
     private authenticationService: AuthenticationService,
     private route: Router,
     private modalController: ModalController
