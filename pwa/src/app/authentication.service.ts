@@ -15,5 +15,6 @@ export class AuthenticationService {
     if(auth){
       localStorage.setItem("Login", "true");
     }
+    localStorage.setItem("Login", "false");
   }
 }

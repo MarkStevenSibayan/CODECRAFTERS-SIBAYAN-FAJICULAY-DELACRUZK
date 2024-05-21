@@ -64,7 +64,7 @@ export class SignupPage implements OnInit {
     await alert.present();
   }
 
-  loginPage(){
+  login(){
     this.route.navigate(['login'])
   }
 }

@@ -27,11 +27,10 @@ export class LoginPage implements OnInit {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, this.email, this.password)
     .then((userCredential) => {
-      const user = userCredential.user
+      const user = userCredential.user.uid
       this.authenticationService.setAuthentication(true);
       this.presentAlert('Success', 'Welcome To Our Project Application User');
       this.authenticationService.authenticated = true;
-      this.userName = this.email;
       localStorage.setItem('userName', this.email)
       this.route.navigate(['home/dashboard']);
     })
@@ -40,8 +39,8 @@ export class LoginPage implements OnInit {
       const errorMessage = error.message
       this.presentAlert('Failed', 'Invalid Input')
       this.email = '';
-      this.password = '';
     })
+    this.password = '';
     
   }
 

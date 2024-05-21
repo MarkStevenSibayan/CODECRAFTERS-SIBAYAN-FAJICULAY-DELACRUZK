@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { addDoc, collection, doc, getFirestore, updateDoc } from 'firebase/firestore';
 import { HomeService } from '../../home.service';
 import { Profile, iProfile } from '../../profile/profile.model';
+import { CommentComponent } from './comment/comment.component';
 
 @Component({
   selector: 'app-content',
@@ -33,7 +34,7 @@ export class ContentComponent  implements OnInit {
   color: string = '';
 
   constructor(
-    private modalCtrl: ModalController,
+    private modalController: ModalController,
     private alertController: AlertController,
     private homeService: HomeService
   ) {
@@ -44,15 +45,9 @@ export class ContentComponent  implements OnInit {
   }
 
   back() {
-    return this.modalCtrl.dismiss();
-    this.users(); 
+    return this.modalController.dismiss();
   }
 
-  async users(){
-    this.isLoading = true;
-    this.userList = await this.homeService.getUser();
-    this.isLoading = false;
-  }
 
   async action(){
     this.color = "danger";
@@ -109,4 +104,15 @@ export class ContentComponent  implements OnInit {
     });
     await alert.present();
   }
+
+
+  async openModal(user: User) {
+    
+    const modal = await this.modalController.create({
+      component: CommentComponent,
+    });
+    modal.present();
+  }
+
+
 }

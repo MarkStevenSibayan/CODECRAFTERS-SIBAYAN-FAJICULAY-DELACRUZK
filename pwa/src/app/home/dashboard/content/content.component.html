@@ -7,7 +7,7 @@
       <div class="components">
         <ion-button (click)="action()"><ion-icon [color]="color" name="heart"></ion-icon></ion-button>
         <ion-label>{{userReact}}</ion-label>
-        <ion-button><ion-icon name="chatbox-ellipses"></ion-icon></ion-button>
+        <ion-button (click)="openModal(user)"><ion-icon name="chatbox-ellipses"></ion-icon></ion-button>
         <ion-button (click)="Add()"><ion-icon name="clipboard"></ion-icon></ion-button>
       </div>
       <div class="message">

@@ -1,23 +1,15 @@
 
 <ion-content [fullscreen]="true">
-  <img class="background">
-  
-  <pre class="login-container">
-    <h1 class="loginText"><b>Sign Up</b></h1>
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" [(ngModel)]="email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Password <i style="font-size: 10px;">(at least 6 characters)</i></ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">RetypePassword</ion-label>
-      <ion-input type="password" [(ngModel)]="retypePassword"></ion-input>
-    </ion-item>
 
-  <ion-button (click)="signUp()" color="success"  class="signUp">SignUp</ion-button>
-  <ion-button (click)="loginPage()" class="loginB">Login</ion-button>
-  </pre>
+  <h1>Create Your Account</h1>
+
+  <div class="background">
+    <div class="buttons-div">
+      <ion-searchbar search-icon="mail-outline" placeholder="Email" [(ngModel)]="email"></ion-searchbar>
+      <ion-searchbar type="password" search-icon="lock-closed-outline" placeholder="Password" [(ngModel)]="password"></ion-searchbar>
+      <ion-searchbar type="password" search-icon="lock-closed-outline" placeholder="RetypePassword" [(ngModel)]="retypePassword"></ion-searchbar>
+      <ion-button (click)="signUp()" color="primary" class="signup">SIGNUP</ion-button>
+      <ion-button (click)="login()" color="success" class="login">LOGIN</ion-button>
+    </div>
+  </div>
 </ion-content>

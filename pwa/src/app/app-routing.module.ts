@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'signup',
+    redirectTo: 'index',
     pathMatch: 'full'
   },
   {
@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'signup',
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'index',
+    loadChildren: () => import('./start-page/start-page.module').then( m => m.StartPagePageModule)
   },
 
 ];

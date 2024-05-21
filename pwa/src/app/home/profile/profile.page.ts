@@ -57,6 +57,7 @@ export class ProfilePage implements OnInit {
   logout(){
     this.route.navigate(['login'])
     this.authenticationService.authenticated = false;
+    // this.authenticationService.setAuthentication(false);
   }
 
   async openModal(user: User) {

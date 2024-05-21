@@ -10,12 +10,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from 'src/environments/environment';
 import { HomePage } from './home/home.page';
 import { ModalComponent } from './home/modal/modal.component';
+
 import { getFirestore } from 'firebase/firestore';
 import { ContentComponent } from './home/dashboard/content/content.component';
 import { FormsModule } from '@angular/forms';
+import { CommentComponent } from './home/dashboard/content/comment/comment.component';
 
 @NgModule({
-  declarations: [AppComponent, ModalComponent, ContentComponent],
+  declarations: [AppComponent, ModalComponent, ContentComponent, CommentComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ServiceWorkerModule.register('ngsw-worker.js', {
   enabled: !isDevMode(),
   // Register the ServiceWorker as soon as the application is stable
