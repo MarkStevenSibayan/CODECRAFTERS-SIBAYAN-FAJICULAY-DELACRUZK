@@ -5,7 +5,11 @@ import { Profile, iProfile } from './profile.model';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication.service';
 import { ContentComponent } from '../dashboard/content/content.component';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
+import { initializeApp } from 'firebase/app';
+import { environment } from 'src/environments/environment';
+import { deleteDoc, doc, getFirestore } from 'firebase/firestore';
+import { InfoComponent } from './info/info.component';
 
 
 @Component({
@@ -27,7 +31,9 @@ export class ProfilePage implements OnInit {
     private homeService: HomeService,
     private route: Router,
     private authenticationService: AuthenticationService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private alertController: AlertController,
+    private toastController: ToastController
   ) 
   { 
     
@@ -74,5 +80,36 @@ export class ProfilePage implements OnInit {
     
   }
 
-  
+  async delete(prof: Profile){
+    const app = initializeApp(environment.firebaseConfig);
+    const firestore = getFirestore(app);
+
+    try{
+        const docu = doc(firestore, "profile", prof.id)
+        await deleteDoc(docu);
+
+        const toast = await this.toastController.create({
+          message: 'Sucessfully Deleted',
+          duration: 5000,
+          position: 'top',
+        })
+
+        await toast.present();
+
+    } catch (e) {
+        console.error("Error adding Document: ", e)
+    }
+
+    this.users();
+    this.profiles(); 
+  }
+
+  async openInfo() {
+
+    const modal = await this.modalController.create({
+      component: InfoComponent,
+    });
+    modal.present();
+  }
+
 }

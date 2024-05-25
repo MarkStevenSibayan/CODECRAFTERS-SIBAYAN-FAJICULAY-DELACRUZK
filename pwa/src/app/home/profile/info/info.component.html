@@ -1,0 +1,39 @@
+
+<ion-content [fullscreen]="true">
+  <div class="background">
+    
+    <div class="all">
+      <div class="profile-image"></div>
+      <div class="profName">
+        <p><b>{{userPangalan}}</b></p>
+      </div>
+    </div>
+
+    <div class="edit">
+      <ion-item>
+        <ion-input label="Name" placeholder="Name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Bio" labelPlacement="stacked" placeholder="Describe yourself..."></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Gender" placeholder="Male or Female"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Age" placeholder="Age"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input label="Number" placeholder="+63"></ion-input>
+      </ion-item>
+
+      <ion-button color="warning" class="done">Apply</ion-button>
+    </div>
+
+
+    <ion-button class="backBTN" (click)="back()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+  </div>
+</ion-content>

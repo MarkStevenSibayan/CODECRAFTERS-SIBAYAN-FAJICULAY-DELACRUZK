@@ -10,13 +10,14 @@
       
       <p><b>Followers: 1k  |   Following: 510</b></p>
     </div> 
-    <ion-button class="edit" color="warning">EDIT</ion-button>
+    <ion-button class="edit" color="warning" (click)="openInfo()">EDIT</ion-button>
   </div>
 
   <div class="background">
     <div class="background1"></div>
     <div class="list">
       <div *ngFor="let prof of userProfile" class="item">
+        <ion-button class="deleteCont" color="danger" (click)="delete(prof)"><ion-icon name="trash-outline"></ion-icon></ion-button>
         <p class="desc">{{prof.desc}}</p>
         <img src="{{prof.link}}" alt="Displayed Image" (click)="openModal(prof)">
       </div>
