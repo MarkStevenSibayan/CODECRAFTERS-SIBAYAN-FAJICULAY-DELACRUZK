@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
 import { User, iUser } from '../home.model';
-import { Profile, iProfile } from './profile.model';
+import { Information, Profile, iInfo, iProfile } from './profile.model';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication.service';
 import { ContentComponent } from '../dashboard/content/content.component';
@@ -25,6 +25,9 @@ export class ProfilePage implements OnInit {
   prof: Profile = new Profile();
   userProfile: iProfile[] = [];
 
+  information: Information = new Information();
+  userInformation: iInfo[] = [];
+
   isLoading = false;
   
   constructor(
@@ -46,18 +49,20 @@ export class ProfilePage implements OnInit {
   ionViewWillEnter(){
     this.users();
     this.profiles(); 
+    this.Information();
   }
 
   async users(){
-    this.isLoading = true;
     this.userList = await this.homeService.getUser();
-    this.isLoading = false;
   }
 
   async profiles(){
-    this.isLoading = true;
     this.userProfile = await this.homeService.getProfile();
-    this.isLoading = false;
+
+  }
+
+  async Information(){
+    this.userInformation = await this.homeService.getInformation();
   }
 
   logout(){
@@ -81,13 +86,14 @@ export class ProfilePage implements OnInit {
   }
 
   async delete(prof: Profile){
+    this.prof = prof
     const app = initializeApp(environment.firebaseConfig);
     const firestore = getFirestore(app);
 
     try{
         const docu = doc(firestore, "profile", prof.id)
         await deleteDoc(docu);
-
+        
         const toast = await this.toastController.create({
           message: 'Sucessfully Deleted',
           duration: 5000,
@@ -95,7 +101,8 @@ export class ProfilePage implements OnInit {
         })
 
         await toast.present();
-
+        localStorage.setItem('notificationMessage', 'You Successfully delete "'+this.prof.desc+'" to your profile account')
+        this.homeService.AddNotif();
     } catch (e) {
         console.error("Error adding Document: ", e)
     }

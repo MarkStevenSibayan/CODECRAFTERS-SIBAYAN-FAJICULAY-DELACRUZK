@@ -5,7 +5,7 @@ import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { User, iUser } from './home.model';
 import { HomePage } from './home.page';
-import { Profile, iProfile } from './profile/profile.model';
+import { Information, Profile, iInfo, iProfile } from './profile/profile.model';
 import { iNotification, Notification} from './notification/notification.model';
 import { AlertController } from '@ionic/angular';
 
@@ -21,6 +21,7 @@ export class HomeService {
   userDesc: string = '';
   userMessage: string  = '';
   userReact: number = 0;
+
 
   constructor(private alertController: AlertController) {}
 
@@ -45,7 +46,39 @@ export class HomeService {
     const firestore = getFirestore(app);
     const profiles: Profile[] = [];
 
-    const querySnapshot = await getDocs(collection(firestore, "profile"));
+    const querySnapshot = await getDocs(collection(firestore, "profile", ));
+    querySnapshot.forEach((doc) => {
+        const profile = doc.data() as Profile;
+        profile.id = doc.id;
+        profiles.push(profile);
+        console.log(`${doc.id} => ${doc.data()}`);
+        console.log(doc.data());
+    });
+    return profiles;
+  }
+
+  async getInformation(): Promise<iInfo[]> {
+    const app = initializeApp(environment.firebaseConfig);
+    const firestore = getFirestore(app);
+    const informations: Information[] = [];
+
+    const querySnapshot = await getDocs(collection(firestore, "information", ));
+    querySnapshot.forEach((doc) => {
+        const information = doc.data() as Information;
+        information.id = doc.id;
+        informations.push(information);
+        console.log(`${doc.id} => ${doc.data()}`);
+        console.log(doc.data());
+    });
+    return informations;
+  }
+
+  async getAccount(): Promise<iProfile[]> {
+    const app = initializeApp(environment.firebaseConfig);
+    const firestore = getFirestore(app);
+    const profiles: Profile[] = [];
+
+    const querySnapshot = await getDocs(collection(firestore, "account", ));
     querySnapshot.forEach((doc) => {
         const profile = doc.data() as Profile;
         profile.id = doc.id;
@@ -129,6 +162,26 @@ export class HomeService {
         //   addOns: user.addOns,
         //   whatAddOns: user.whatAddOns,
         //   mobileNum: user.mobileNum
+            // firstName: user.firstName,
+            // middleName: user.middleName,
+            // lastName: user.lastName,
+        })
+    } catch (e) {
+        console.error("Error adding Document: ", e)
+    }
+  }
+
+  async UpdateInformation(information: Information){
+    const app = initializeApp(environment.firebaseConfig);
+    const firestore = getFirestore(app);
+
+    try{
+        const docRef = doc(firestore, "information", information.id);
+        await updateDoc(docRef, {
+          name: information.name,
+          bio: information.bio,
+          age: information.age,
+          gender: information.gender,
             // firstName: user.firstName,
             // middleName: user.middleName,
             // lastName: user.lastName,

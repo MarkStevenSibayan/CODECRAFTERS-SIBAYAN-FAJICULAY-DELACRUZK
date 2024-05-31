@@ -89,8 +89,21 @@
 .profName{
   padding: 0px;
   margin: 0%;
+  width: 100%;
+  text-align: center;
   color: black;
   z-index: 999;
+}
+
+.bio{
+  margin-top: -10px;
+  width: 300px;
+  text-align: center;
+}
+
+.bio p{
+  width: 100%;
+  text-align: center;
 }
 
 .all{
@@ -175,6 +188,7 @@
 
   .logout{
     position: absolute;
+    width: 50px;
     padding: 0px;
     margin: 0px;
     font-size: 10px;

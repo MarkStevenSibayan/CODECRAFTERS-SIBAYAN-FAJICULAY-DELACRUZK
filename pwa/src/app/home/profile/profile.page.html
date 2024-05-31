@@ -3,12 +3,16 @@
 
   <div class="all">
     <div class="profile-image"></div>
-    <div class="profName">
-      <p><b>{{userPangalan}}</b></p>
-    </div>
-    <div style="z-index: 999;">
+
+    <div style="z-index: 999;" *ngFor="let information of userInformation">
+      <div class="profName">
+        <h2>{{information.name}}</h2>
+        <p><b>Age:</b> {{information.age}} | <b>Gender:</b> {{information.gender}}</p>
+      </div>
+      <div class="bio">
+        <p>{{information.bio}}</p>
+      </div>
       
-      <p><b>Followers: 1k  |   Following: 510</b></p>
     </div> 
     <ion-button class="edit" color="warning" (click)="openInfo()">EDIT</ion-button>
   </div>
@@ -24,5 +28,5 @@
     </div>
   </div>
   
-  <ion-button color="danger" class="logout" (click)="logout()">Logout</ion-button>
+  <ion-button color="danger" class="logout" (click)="logout()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
 </ion-content>

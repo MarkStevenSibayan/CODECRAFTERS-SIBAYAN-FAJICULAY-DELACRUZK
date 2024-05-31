@@ -1,5 +1,5 @@
 export class Profile{
-    id: string ='';
+    id: string;
     link: string;
     desc: string;
     message: string;
@@ -21,4 +21,27 @@ export interface iProfile{
     message: string;
     react: number;
 
+}
+
+export class Information{
+    id: string;
+    bio: string;
+    age: number;
+    name: string;
+    gender: string;
+    constructor(id: string = '', bio: string = '',age: number = 18, name: string = '', gender : string = ''){
+        this.id = id,
+        this.bio = bio
+        this.age = age
+        this.name = name
+        this.gender = gender
+    }
+}
+
+export interface iInfo{
+    id: string;
+    bio: string;
+    age: number;
+    name: string;
+    gender: string;
 }
