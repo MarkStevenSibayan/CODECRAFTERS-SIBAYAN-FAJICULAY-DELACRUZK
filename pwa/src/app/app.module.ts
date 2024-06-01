@@ -16,6 +16,7 @@ import { ContentComponent } from './home/dashboard/content/content.component';
 import { FormsModule } from '@angular/forms';
 import { CommentComponent } from './home/dashboard/content/comment/comment.component';
 import { InfoComponent } from './home/profile/info/info.component';
+import { DashboardPage } from './home/dashboard/dashboard.page';
 
 @NgModule({
   declarations: [AppComponent, ModalComponent, ContentComponent, CommentComponent, InfoComponent],

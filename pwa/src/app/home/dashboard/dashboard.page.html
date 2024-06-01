@@ -1,10 +1,17 @@
 <ion-content [fullscreen]="true">
   <div class="all"><p><u>ALL</u></p></div>
 
-  <div class="list">
+  <div class="list" *ngIf="contentDo">
     <div *ngFor="let user of userList" class="item">
       <p class="desc">{{user.desc}}</p>
       <img src="{{user.link}}" alt="Displayed Image" (click)="openModal(user)">
+    </div>
+  </div>
+
+  <div class="list" *ngIf="comsetDo">
+    <div *ngFor="let comSet of userComset" class="item">
+      <p class="desc">{{comSet.comdesc}}</p>
+      <img src="{{comSet.comlink}}" alt="Displayed Image" (click)="openModalComset(comSet)">
     </div>
   </div>
 

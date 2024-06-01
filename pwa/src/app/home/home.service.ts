@@ -3,17 +3,21 @@ import { Injectable } from '@angular/core';
 import { addDoc, collection, getFirestore, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
-import { User, iUser } from './home.model';
+import { Comset, User, iComset, iUser } from './home.model';
 import { HomePage } from './home.page';
 import { Information, Profile, iInfo, iProfile } from './profile/profile.model';
 import { iNotification, Notification} from './notification/notification.model';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HomeService {
-
+  contentDo : boolean = true;
+  comsetDo : boolean = false;
+  pcassDo : boolean = false;
+  itnewDo : boolean = false;
 
   ProfileContent: any[] = [];
   userId: string = '';
@@ -23,7 +27,10 @@ export class HomeService {
   userReact: number = 0;
 
 
-  constructor(private alertController: AlertController) {}
+  constructor(
+    private alertController: AlertController,
+    private route: Router
+  ) {}
 
   async getUser(): Promise<iUser[]> {
     const app = initializeApp(environment.firebaseConfig);
@@ -62,7 +69,7 @@ export class HomeService {
     const firestore = getFirestore(app);
     const informations: Information[] = [];
 
-    const querySnapshot = await getDocs(collection(firestore, "information", ));
+    const querySnapshot = await getDocs(collection(firestore, "information"));
     querySnapshot.forEach((doc) => {
         const information = doc.data() as Information;
         information.id = doc.id;
@@ -72,6 +79,23 @@ export class HomeService {
     });
     return informations;
   }
+
+  async getComset(): Promise<iComset[]> {
+    const app = initializeApp(environment.firebaseConfig);
+    const firestore = getFirestore(app);
+    const comsets: Comset[] = [];
+
+    const querySnapshot = await getDocs(collection(firestore, "ComSet"));
+    querySnapshot.forEach((doc) => {
+        const comset = doc.data() as Comset;
+        comset.id = doc.id;
+        comsets.push(comset);
+        console.log(`${doc.id} => ${doc.data()}`);
+        console.log(doc.data());
+    });
+    return comsets;
+  }
+
 
   async getAccount(): Promise<iProfile[]> {
     const app = initializeApp(environment.firebaseConfig);
@@ -210,6 +234,30 @@ export class HomeService {
       buttons: ['okay']
     });
     await alert.present();
+  }
+
+  openComset(){
+    this.contentDo = false;
+    this.comsetDo = true; 
+    this.pcassDo = false;
+    this.itnewDo = false;
+    this.route.navigate(['home/dashboard'])
+    }
+
+  openAll(){
+    this.contentDo = true;
+    this.comsetDo = true; 
+    this.pcassDo = true;
+    this.itnewDo = true;
+    this.route.navigate(['home/dashboard'])
+  }
+
+  openMain(){
+    this.contentDo = true;
+    this.comsetDo = false; 
+    this.pcassDo = true;
+    this.itnewDo = true;
+    this.route.navigate(['home/dashboard'])
   }
 
 }

@@ -21,3 +21,28 @@ export interface iUser{
     message: string;
     react: number;
 }
+
+
+export class Comset{
+    id: string;
+    comlink: string;
+    comdesc: string;
+    commessage: string;
+    comreact: number;
+    constructor(id: string ='', comlink: string = '', comdesc: string = '', commessage: string='', comreact: number = 0){
+        this.id = id;
+        this.comlink = comlink;
+        this.comdesc = comdesc;
+        this.commessage = commessage;
+        this.comreact = comreact;
+    }
+}
+
+
+export interface iComset{
+    id: string;
+    comlink: string;
+    comdesc: string;
+    commessage: string;
+    comreact: number;
+}
