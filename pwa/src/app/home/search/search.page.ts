@@ -21,16 +21,20 @@ export class SearchPage implements OnInit {
   ngOnInit() {
   }
 
-  openComset(){
-  this.homeService.openComset();
-  }
-
   openAll(){
     this.homeService.openAll();
   }
 
-  openMain(){
-    this.homeService.openMain();
+  openComset(){
+  this.homeService.openComset();
+  }
+
+  openAssembly(){
+    this.homeService.openAssembly();
+  }
+
+  openNews(){
+    this.homeService.openNews();
   }
 
 }

@@ -18,6 +18,7 @@ import { InfoComponent } from './info/info.component';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+
   userPangalan = localStorage.getItem('userName');
   user: User = new User();
   userList: iUser[] = [];
@@ -98,7 +99,11 @@ export class ProfilePage implements OnInit {
           duration: 5000,
           position: 'top',
         })
-
+        var index = this.homeService.ProfileContent.indexOf(prof.desc);
+        
+        if (index > -1) {
+          this.homeService.ProfileContent.splice(index, 1);
+        }
         await toast.present();
         localStorage.setItem('notificationMessage', 'You Successfully delete "'+this.prof.desc+'" to your profile account -- Time: '+ this.homeService.getCurrentTime())
         this.homeService.AddNotif();

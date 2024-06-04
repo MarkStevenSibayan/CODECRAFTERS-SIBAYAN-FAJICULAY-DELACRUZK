@@ -15,6 +15,20 @@
     </div>
   </div>
 
+  <div class="list" *ngIf="pcassDo">
+    <div *ngFor="let assembly of userAssembly" class="item">
+      <p class="desc">{{assembly.asdesc}}</p>
+      <img src="{{assembly.aslink}}" alt="Displayed Image" (click)="openModalAssembly(assembly)">
+    </div>
+  </div>
+
+  <div class="list" *ngIf="itnewDo">
+    <div *ngFor="let news of userNews" class="item">
+      <p class="desc">{{news.newsdesc}}</p>
+      <img src="{{news.newslink}}" alt="Displayed Image" (click)="openModalNews(news)">
+    </div>
+  </div>
+
   </ion-content>
 
   

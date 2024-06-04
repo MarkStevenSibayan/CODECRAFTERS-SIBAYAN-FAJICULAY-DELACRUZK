@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { addDoc, collection, getFirestore, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
-import { Comset, User, iComset, iUser } from './home.model';
+import { Assembly, Comset, News, User, iAssembly, iComset, iNews, iUser } from './home.model';
 import { HomePage } from './home.page';
 import { Information, Profile, iInfo, iProfile } from './profile/profile.model';
 import { iNotification, Notification} from './notification/notification.model';
@@ -15,9 +15,9 @@ import { Router } from '@angular/router';
 })
 export class HomeService {
   contentDo : boolean = true;
-  comsetDo : boolean = false;
-  pcassDo : boolean = false;
-  itnewDo : boolean = false;
+  comsetDo : boolean = true;
+  pcassDo : boolean = true;
+  itnewDo : boolean = true;
 
   ProfileContent: any[] = [];
   userId: string = '';
@@ -97,6 +97,38 @@ export class HomeService {
     return comsets;
   }
 
+  async getAssembly(): Promise<iAssembly[]> {
+    const app = initializeApp(environment.firebaseConfig);
+    const firestore = getFirestore(app);
+    const assemb: Assembly[] = [];
+
+    const querySnapshot = await getDocs(collection(firestore, "Assembly"));
+    querySnapshot.forEach((doc) => {
+        const assembly = doc.data() as Assembly;
+        assembly.id = doc.id;
+        assemb.push(assembly);
+        console.log(`${doc.id} => ${doc.data()}`);
+        console.log(doc.data());
+    });
+    return assemb;
+  }
+
+
+  async getNews(): Promise<iNews[]> {
+    const app = initializeApp(environment.firebaseConfig);
+    const firestore = getFirestore(app);
+    const news: News[] = [];
+
+    const querySnapshot = await getDocs(collection(firestore, "News"));
+    querySnapshot.forEach((doc) => {
+        const newl = doc.data() as News;
+        newl.id = doc.id;
+        news.push(newl);
+        console.log(`${doc.id} => ${doc.data()}`);
+        console.log(doc.data());
+    });
+    return news;
+  }
 
   async getAccount(): Promise<iProfile[]> {
     const app = initializeApp(environment.firebaseConfig);
@@ -237,14 +269,6 @@ export class HomeService {
     await alert.present();
   }
 
-  openComset(){
-    this.contentDo = false;
-    this.comsetDo = true; 
-    this.pcassDo = false;
-    this.itnewDo = false;
-    this.route.navigate(['home/dashboard'])
-    }
-
   openAll(){
     this.contentDo = true;
     this.comsetDo = true; 
@@ -253,10 +277,26 @@ export class HomeService {
     this.route.navigate(['home/dashboard'])
   }
 
-  openMain(){
-    this.contentDo = true;
+  openComset(){
+    this.contentDo = false;
+    this.comsetDo = true; 
+    this.pcassDo = false;
+    this.itnewDo = false;
+    this.route.navigate(['home/dashboard'])
+    }
+
+  openAssembly(){
+    this.contentDo = false;
     this.comsetDo = false; 
     this.pcassDo = true;
+    this.itnewDo = false;
+    this.route.navigate(['home/dashboard'])
+  }
+
+  openNews(){
+    this.contentDo = false;
+    this.comsetDo = false; 
+    this.pcassDo = false;
     this.itnewDo = true;
     this.route.navigate(['home/dashboard'])
   }

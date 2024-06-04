@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Comset, User, iComset, iUser} from '../home.model';
+import {Assembly, Comset, News, User, iAssembly, iComset, iNews, iUser} from '../home.model';
 import { HomeService } from '../home.service';
 import { ModalController } from '@ionic/angular';
 import { ContentComponent } from './content/content.component';
@@ -30,7 +30,12 @@ export class DashboardPage implements OnInit {
   
   prof: Profile = new Profile();
   userProfile: iProfile[] = [];
-  isLoading: boolean = false;
+
+  assembly: Assembly = new Assembly();
+  userAssembly: iAssembly[] = [];
+ 
+  news: News = new News();
+  userNews: iNews[] = [];
 
   constructor(
     private homeService: HomeService,
@@ -49,19 +54,25 @@ export class DashboardPage implements OnInit {
     this.itnewDo = this.homeService.itnewDo;
     this.users(); 
     this.comset();
+    this.assemb(); 
+    this.newss();
   }
 
 
   async users(){
-    this.isLoading = true;
     this.userList = await this.homeService.getUser();
-    this.isLoading = false;
   }
 
   async comset(){
-    this.isLoading = true;
     this.userComset = await this.homeService.getComset();
-    this.isLoading = false;
+  }
+
+  async assemb(){
+    this.userAssembly = await this.homeService.getAssembly();
+  }
+
+  async newss(){
+    this.userNews = await this.homeService.getNews();
   }
 
   async openModal(user: User) {
@@ -93,6 +104,39 @@ export class DashboardPage implements OnInit {
     });
     modal.present();
   }
+
+  async openModalAssembly(assembly: Assembly) {
+    this.ionViewWillEnter();
+    this.homeService.userId = assembly.id
+    this.homeService.userDesc = assembly.asdesc
+    this.homeService.userLink = assembly.aslink
+    this.homeService.userMessage = assembly.asmessage
+    this.homeService.userReact = assembly.asreact
+
+
+    const modal = await this.modalController.create({
+      component: ContentComponent,
+    });
+    modal.present();
+  }
+
+  async openModalNews(news: News) {
+    this.ionViewWillEnter();
+    this.homeService.userId = news.id
+    this.homeService.userDesc = news.newsdesc
+    this.homeService.userLink = news.newslink
+    this.homeService.userMessage = news.newsmessage
+    this.homeService.userReact = news.newsreact
+
+
+    const modal = await this.modalController.create({
+      component: ContentComponent,
+    });
+    modal.present();
+  }
+
+
+  
 
 
 }

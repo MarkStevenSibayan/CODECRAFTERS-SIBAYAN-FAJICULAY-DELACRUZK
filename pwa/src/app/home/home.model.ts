@@ -47,3 +47,52 @@ export interface iComset{
     commessage: string;
     comreact: number;
 }
+
+export class Assembly{
+    id: string;
+    aslink: string;
+    asdesc: string;
+    asmessage: string;
+    asreact: number;
+    constructor(id: string ='', aslink: string = '', asdesc: string = '', asmessage: string='', asreact: number = 0){
+        this.id = id;
+        this.aslink = aslink;
+        this.asdesc = asdesc;
+        this.asmessage = asmessage;
+        this.asreact = asreact;
+    }
+}
+
+
+export interface iAssembly{
+    id: string;
+    aslink: string;
+    asdesc: string;
+    asmessage: string;
+    asreact: number;
+}
+
+
+export class News{
+    id: string;
+    newslink: string;
+    newsdesc: string;
+    newsmessage: string;
+    newsreact: number;
+    constructor(id: string ='', newslink: string = '', newsdesc: string = '', newsmessage: string='', newsreact: number = 0){
+        this.id = id;
+        this.newslink = newslink;
+        this.newsdesc = newsdesc;
+        this.newsmessage = newsmessage;
+        this.newsreact = newsreact;
+    }
+}
+
+
+export interface iNews{
+    id: string;
+    newslink: string;
+    newsdesc: string;
+    newsmessage: string;
+    newsreact: number;
+}
