@@ -100,7 +100,7 @@ export class ProfilePage implements OnInit {
         })
 
         await toast.present();
-        localStorage.setItem('notificationMessage', 'You Successfully delete "'+this.prof.desc+'" to your profile account Time: '+ this.homeService.getCurrentTime())
+        localStorage.setItem('notificationMessage', 'You Successfully delete "'+this.prof.desc+'" to your profile account -- Time: '+ this.homeService.getCurrentTime())
         this.homeService.AddNotif();
     } catch (e) {
         console.error("Error adding Document: ", e)

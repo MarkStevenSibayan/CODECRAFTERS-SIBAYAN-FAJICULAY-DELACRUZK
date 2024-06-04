@@ -8,13 +8,12 @@
 
 <div class="background">
   <div class="notif">
-    <div [style.backgroundColor]="color" class="message" *ngFor="let notif of notificationList">
+    <div class="message" *ngFor="let notif of notificationList">
       <p>{{notif.message}}</p>
       <div class="deleteNotif">
         <a (click)="delete(notif)">Delete</a>
       </div>
     </div>
-    <a class="changeColor" (click)="changeColor()">{{readAll}}</a>
   </div>
 </div>
   

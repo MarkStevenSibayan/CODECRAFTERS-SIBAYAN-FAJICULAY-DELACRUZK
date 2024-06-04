@@ -52,19 +52,36 @@ export class ContentComponent  implements OnInit {
 
 
   async action(){
-    this.color = "danger";
-    const app = initializeApp(environment.firebaseConfig);
-    const firestore = getFirestore(app);
+    if(this.color == ''){
+      const app = initializeApp(environment.firebaseConfig);
+      const firestore = getFirestore(app);
 
-    try{
-        const docRef = doc(firestore, "users", this.userID);
-        await updateDoc(docRef, {
-          react: this.userReact + 1
-        })
-        this.userReact = this.userReact + 1
-    } catch (e) {
-        console.error("Error adding Document: ", e)
+      try{
+          const docRef = doc(firestore, "users", this.userID);
+          await updateDoc(docRef, {
+            react: this.userReact + 1
+          })
+          this.userReact = this.userReact + 1
+          this.color = "danger";
+      } catch (e) {
+          console.error("Error adding Document: ", e)
+      }
+    } else if (this.color == 'danger'){
+      const app = initializeApp(environment.firebaseConfig);
+      const firestore = getFirestore(app);
+
+      try{
+          const docRef = doc(firestore, "users", this.userID);
+          await updateDoc(docRef, {
+            react: this.userReact - 1
+          })
+          this.userReact = this.userReact - 1
+          this.color = "";
+      } catch (e) {
+          console.error("Error adding Document: ", e)
+      }
     }
+    
   }
 
 
@@ -87,7 +104,7 @@ export class ContentComponent  implements OnInit {
           this.homeService.ProfileContent.push(this.userDesc)
           console.log("Document written with ID: ", doc.id)
           this.presentAlert('Success', "Successfully Saved")
-          localStorage.setItem('notificationMessage', 'You Successfully save "'+this.userDesc+'" to your profile account Time: '+ this.homeService.getCurrentTime());
+          localStorage.setItem('notificationMessage', 'You Successfully save "'+this.userDesc+'" to your profile account -- Time: '+ this.homeService.getCurrentTime());
           this.homeService.AddNotif();
           
       } catch (e) {

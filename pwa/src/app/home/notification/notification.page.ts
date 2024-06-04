@@ -3,7 +3,7 @@ import { HomeService } from '../home.service';
 import { iNotification, Notification } from './notification.model';
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
-import { DocumentData, DocumentReference, addDoc, collection, deleteDoc, doc, getDoc, getFirestore } from 'firebase/firestore';
+import { DocumentData, DocumentReference, addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore } from 'firebase/firestore';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -12,8 +12,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./notification.page.scss'],
 })
 export class NotificationPage implements OnInit {
-  readAll: String = '';
-  color: string = 'black'
+
 
   time = this.homeService.getCurrentTime();
   notif: Notification = new Notification();
@@ -25,11 +24,6 @@ export class NotificationPage implements OnInit {
     private alertController: AlertController
   ) { 
     
-    if(this.notificationList.length >= 1){
-      this.readAll = 'Read All';
-    } else if(this.notificationList.length == 0) {
-      this.readAll = 'No Notification';
-    }
   }
 
   ngOnInit() {}
@@ -79,8 +73,5 @@ export class NotificationPage implements OnInit {
     this.notific();
   }
 
-  changeColor(){
-    this.color = 'gray';
-  }
 }
 
