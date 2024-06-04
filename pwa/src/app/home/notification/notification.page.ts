@@ -3,7 +3,7 @@ import { HomeService } from '../home.service';
 import { iNotification, Notification } from './notification.model';
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
-import { DocumentData, DocumentReference, addDoc, collection, deleteDoc, doc, getFirestore } from 'firebase/firestore';
+import { DocumentData, DocumentReference, addDoc, collection, deleteDoc, doc, getDoc, getFirestore } from 'firebase/firestore';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -12,17 +12,24 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./notification.page.scss'],
 })
 export class NotificationPage implements OnInit {
+  readAll: String = '';
+  color: string = 'black'
+
+  time = this.homeService.getCurrentTime();
   notif: Notification = new Notification();
   notificationList: iNotification[] = [];
   isLoading = false;
-
-  color: string = 'darkgrey'
 
   constructor(
     private homeService: HomeService,
     private alertController: AlertController
   ) { 
-
+    
+    if(this.notificationList.length >= 1){
+      this.readAll = 'Read All';
+    } else if(this.notificationList.length == 0) {
+      this.readAll = 'No Notification';
+    }
   }
 
   ngOnInit() {}
@@ -59,9 +66,21 @@ export class NotificationPage implements OnInit {
     await alert.present();
   }
 
-  
-}
-function deleteCollection(firestore: unknown, p0: string, docu: DocumentReference<DocumentData, DocumentData>) {
-  throw new Error('Function not implemented.');
+  async delete(notif: Notification){
+    const app = initializeApp(environment.firebaseConfig);
+    const firestore = getFirestore(app);
+
+    try{
+        const docu = doc(firestore, "notification", notif.id)
+        await deleteDoc(docu);
+    } catch (e) {
+        console.error("Error adding Document: ", e)
+    }
+    this.notific();
+  }
+
+  changeColor(){
+    this.color = 'gray';
+  }
 }
 

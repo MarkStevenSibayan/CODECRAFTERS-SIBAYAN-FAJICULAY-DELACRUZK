@@ -4,7 +4,8 @@ export class User{
     desc: string;
     message: string;
     react: number;
-    constructor(id: string ='', link: string = '', desc: string = '', message: string='', react: number = 0){
+
+    constructor(id: string ='', link: string = '', desc: string = '', message: string='', react: number = 0, color: string =''){
         this.id = id;
         this.link = link;
         this.desc = desc;

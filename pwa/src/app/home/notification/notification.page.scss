@@ -21,7 +21,7 @@ ion-content{
     top: 60px;
     background-color: antiquewhite;
     width: 100%;
-    min-height: 560px;
+    min-height: 650px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -30,18 +30,21 @@ ion-content{
     padding-bottom: 60px;
 
 }
+  
 
-.notif p{
+.message p{
     width: 100%;
+    padding: 0px;
+    margin: 10px 0px 0px 0px;
     height: auto;
     font-family: sans-serif;
     font-size: 15px;
     text-align: center;
-    padding: 10px;
+    padding: 0px;
 }
 
 .message{
-    background-color: grey;
+    background-color: black;
     width: 90%;
     height: auto;
     margin: 10px;
@@ -49,6 +52,32 @@ ion-content{
 }
 
 .deleteNotif{
+    margin: 0px;
+    padding: 5px 0px 5px 0px ;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteNotif a{
+    margin: 0px;
+    padding: 2px;
+    background-color: red;
+    font-size: 13px;
+    border-radius: 20px;
+    width: 50px;
+    text-align: center;
+    color: black;
+    text-decoration: underline;
+    transition: transform 0.8s ease;
+}
+
+.deleteNotif p:hover{
+    transform: scale(1.1);
+}
+
+.changeColor{
     color: black;
     text-decoration: underline;
 }

@@ -67,8 +67,7 @@ export class ProfilePage implements OnInit {
 
   logout(){
     this.route.navigate(['login'])
-    this.authenticationService.authenticated = false;
-    // this.authenticationService.setAuthentication(false);
+    this.authenticationService.setAuthentication(false);
   }
 
   async openModal(user: User) {
@@ -101,7 +100,7 @@ export class ProfilePage implements OnInit {
         })
 
         await toast.present();
-        localStorage.setItem('notificationMessage', 'You Successfully delete "'+this.prof.desc+'" to your profile account')
+        localStorage.setItem('notificationMessage', 'You Successfully delete "'+this.prof.desc+'" to your profile account Time: '+ this.homeService.getCurrentTime())
         this.homeService.AddNotif();
     } catch (e) {
         console.error("Error adding Document: ", e)

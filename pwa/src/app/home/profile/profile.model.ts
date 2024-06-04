@@ -20,7 +20,6 @@ export interface iProfile{
     desc: string;
     message: string;
     react: number;
-
 }
 
 export class Information{

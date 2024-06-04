@@ -14,6 +14,7 @@ import { CommentComponent } from './comment/comment.component';
   styleUrls: ['./content.component.scss'],
 })
 export class ContentComponent  implements OnInit {
+  
   user: User = new User();
   userList: iUser[] = [];
 
@@ -27,6 +28,7 @@ export class ContentComponent  implements OnInit {
   userDesc = this.homeService.userDesc
   userReact = this.homeService.userReact
   userMessage = this.homeService.userMessage
+
 
   currentTime = new Date();
   
@@ -79,13 +81,13 @@ export class ContentComponent  implements OnInit {
             desc: this.userDesc,
             link: this.userLink,
             message: this.userMessage,
-            react: this.userReact
+            react: this.userReact,
           });
   
           this.homeService.ProfileContent.push(this.userDesc)
           console.log("Document written with ID: ", doc.id)
           this.presentAlert('Success', "Successfully Saved")
-          localStorage.setItem('notificationMessage', 'You Successfully save "'+this.userDesc+'" to your profile account')
+          localStorage.setItem('notificationMessage', 'You Successfully save "'+this.userDesc+'" to your profile account Time: '+ this.homeService.getCurrentTime());
           this.homeService.AddNotif();
           
       } catch (e) {

@@ -30,7 +30,6 @@ export class LoginPage implements OnInit {
       const user = userCredential.user.uid
       this.authenticationService.setAuthentication(true);
       this.presentAlert('Success', 'Welcome To Our Project Application User');
-      this.authenticationService.authenticated = true;
       localStorage.setItem('userName', this.email)
       this.route.navigate(['home/dashboard']);
     })

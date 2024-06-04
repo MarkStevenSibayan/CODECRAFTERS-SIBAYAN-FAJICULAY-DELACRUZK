@@ -21,12 +21,6 @@ export class HomePage {
   ) {}
 
   ngOnInit() {
-    this.authenticationService.authenticated = false;
-  }
-  
-  logout(){
-    this.authenticationService.authenticated = false;
-    this.route.navigate(['login']);
   }
 
   async openModal() {
