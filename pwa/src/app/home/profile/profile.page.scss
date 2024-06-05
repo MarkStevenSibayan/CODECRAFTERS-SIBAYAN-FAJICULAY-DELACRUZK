@@ -28,20 +28,6 @@
     background: linear-gradient(to top, rgba(gray, 0) 0%, rgba(gray, 0.75) 15%, rgba(grey, 1) 100%);
 }
 
-.page{
-    display: flex;
-    justify-content: space-around;
-    align-self: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 300px;
-    padding-top: 30px;
-    margin-left: auto ;
-    width: auto;
-    height: auto;
-    z-index: 999;
-    background-color: antiquewhite;
-  }
 
   .card{
     border: 2px solid blue;
@@ -124,12 +110,6 @@
     background-color: antiquewhite;
   }
 
-  .fab{
-    position: fixed;
-    top: 88%;
-    right: 10px;
-    z-index: 999;
-}
 
 .list{
   background-color: antiquewhite;
